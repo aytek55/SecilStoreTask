@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model List<ConfigurationRecords>
+
+<h2>Konfigürasyon Listesi</h2>
+<a href="@Url.Action("Create", "Configuration")" class="btn btn-primary">Yeni Konfigürasyon Ekle</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Ad</th>
+            <th>Tip</th>
+            <th>Değer</th>
+            <th>Aktif Mi?</th>
+            <th>Uygulama</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Type</td>
+                <td>@item.Value</td>
+                <td>@(item.IsActive ? "Evet" : "Hayır")</td>
+                <td>@item.ApplicationName</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Configuration", new { id = item.Id })" class="btn btn-warning">Düzenle</a>
+                    <a href="@Url.Action("Delete", "Configuration", new { id = item.Id })" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
